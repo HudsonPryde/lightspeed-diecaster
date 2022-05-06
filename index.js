@@ -11,7 +11,7 @@ express()
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({ intents: ["GUILD_MESSAGES"] });
 
 client.on("ready", () => {
   console.log(`Logged in...`);
