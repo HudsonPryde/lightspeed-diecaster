@@ -1,39 +1,98 @@
-# node-js-getting-started
+# Getting Started app for Discord
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](https://discord.com/developers/docs/getting-started).
 
-This application supports the [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+![Demo of app](/assets/getting-started-demo.gif?raw=true)
 
-## Running Locally
+> ✨ A version of this code is also hosted **[on Glitch 🎏](https://glitch.com/~getting-started-discord)** and **[on Replit 🌀](https://replit.com/@shaydewael/discord-example-app)**
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
+## Project structure
+Below is a basic overview of the project structure:
 
 ```
-$ heroku create
-$ git push heroku main
-$ heroku open
+├── examples    -> short, feature-specific sample apps
+│   ├── button.js
+│   ├── command.js
+│   ├── modal.js
+│   ├── selectMenu.js
+├── .env.sample -> sample .env file
+├── app.js      -> main entrypoint for app
+├── commands.js -> slash command payloads + helpers
+├── game.js     -> logic specific to RPS
+├── utils.js    -> utility functions and enums
+├── package.json
+├── README.md
+└── .gitignore
 ```
-or
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+## Running app locally
 
-## Documentation
+Before you start, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
+- `applications.commands`
+- `bot` (with Send Messages enabled)
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+Configuring the app is covered in detail in the [getting started guide](https://discord.com/developers/docs/getting-started).
+### Setup project
 
-- [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+First clone the project:
+```
+git clone https://github.com/discord/discord-example-app.git
+```
+
+Then navigate to its directory and install dependencies:
+```
+cd discord-getting-started
+npm install
+```
+### Get app credentials
+
+Fetch the credentials from your app's settings and add them to a `.env` file (see `.env.sample` for an example). You'll need your app ID (`APP_ID`), server ID (`GUILD_ID`), bot token (`DISCORD_TOKEN`), and public key (`PUBLIC_KEY`).
+
+Fetching credentials is covered in detail in the [getting started guide](https://discord.com/developers/docs/getting-started).
+
+> 🔑 Environment variables can be added to the `.env` file in Glitch or when developing locally, and in the Secrets tab in Replit (the lock icon on the left).
+
+### Run the app
+
+After your credentials are added, go ahead and run the app:
+
+```
+node app.js
+```
+
+> ⚙️ A package [like `nodemon`](https://github.com/remy/nodemon), which watches for local changes and restarts your app, may be helpful while locally developing.
+
+### Set up interactivity
+
+The project needs a public endpoint where Discord can send requests. To develop and test locally, you can use something like [`ngrok`](https://ngrok.com/) to tunnel HTTP traffic.
+
+Install ngrok if you haven't already, then start listening on port `3000`:
+
+```
+ngrok http 3000
+```
+
+You should see your connection open:
+
+```
+Tunnel Status                 online
+Version                       2.0/2.0
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    http://1234-someurl.ngrok.io -> localhost:3000
+Forwarding                    https://1234-someurl.ngrok.io -> localhost:3000
+
+Connections                  ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+Copy the forwarding address that starts with `https`, in this case `https://1234-someurl.ngrok.io`, then go to your [app's settings](https://discord.com/developers/applications).
+
+On the **General Information** tab, there will be an **Interactions Endpoint URL**. Paste your ngrok address there, and append `/interactions` to it (`https://1234-someurl.ngrok.io/interactions` in the example).
+
+Click **Save Changes**, and your app should be ready to run 🚀
+
+## Other resources
+- Read **[the documentation](https://discord.com/developers/docs/intro)** for in-depth information about API features.
+- Browse the `examples/` folder in this project for smaller, feature-specific code examples
+- Join the **[Discord Developers server](https://discord.gg/discord-developers)** to ask questions about the API, attend events hosted by the Discord API team, and interact with other devs.
+- Check out **[community resources](https://discord.com/developers/docs/topics/community-resources#community-resources)** for language-specific tools maintained by community members.

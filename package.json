@@ -1,33 +1,22 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
-  "type":"commonjs",
-  "engines": {
-    "node": "16.x"
-  },
-  "main": "index.js",
+  "name": "getting-started",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "test": "node test.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
+  "author": "Shay DeWael",
+  "license": "MIT",
   "dependencies": {
-    "discord.js": "^13.6.0",
-    "ejs": "^3.1.5",
-    "express": "^4.15.2"
+    "discord-interactions": "^3.2.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.3"
   },
   "devDependencies": {
-    "got": "^11.3.0",
-    "tape": "^4.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "license": "MIT"
+    "nodemon": "^2.0.15"
+  }
 }
