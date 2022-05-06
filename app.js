@@ -30,7 +30,7 @@ app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 const activeGames = {};
 
 app.get("/", function (req, res) {
-  res.body = "ping";
+  res.send({ ping: "pong" });
 });
 
 /**
