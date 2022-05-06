@@ -1,4 +1,4 @@
-import { getRPSChoices } from "./roll.js";
+import { getRollChoices } from "./roll.js";
 import { capitalize, DiscordRequest } from "./utils.js";
 
 export async function HasGuildCommands(appId, guildId, commands) {
@@ -45,7 +45,7 @@ export async function InstallGuildCommand(appId, guildId, command) {
 
 // Get the game choices from game.js
 function createCommandChoices() {
-  const choices = getRPSChoices();
+  const choices = getRollChoices();
   const commandChoices = [];
 
   for (let choice of choices) {
