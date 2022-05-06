@@ -27,14 +27,17 @@ const PORT = process.env.PORT || 3000;
 const Discord = require("discord.js");
 const client = new Discord.Client();
 
-client.on("ready", () => {
-  console.log("connected");
-});
 // Parse request body and verifies incoming requests using discord-interactions package
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
 // Store for in-progress games. In production, you'd want to use a DB
 const activeGames = {};
+
+app.post("/", function (req, res) {
+  client.on("ready", () => {
+    console.log("connected");
+  });
+});
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
