@@ -1,5 +1,4 @@
-import { getRollChoices } from "./roll.js";
-import { capitalize, DiscordRequest } from "./utils.js";
+import { DiscordRequest } from "./utils.js";
 
 export async function HasGuildCommands(appId, guildId, commands) {
   if (guildId === "" || appId === "") return;
