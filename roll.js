@@ -16,10 +16,7 @@ export function getResult(advantage) {
       rolls = rollDie(3);
       rollsClone = _.clone(rolls);
       // pull the smallest value
-      _.pullAt(
-        rolls,
-        rolls.lastIndexOf((element) => Math.min(...rolls))
-      );
+      _.pullAt(rolls, rolls.lastIndexOf(Math.min(...rolls)));
       total = rolls[0] + rolls[1];
       break;
     // disadvantage
@@ -27,10 +24,7 @@ export function getResult(advantage) {
       rolls = rollDie(3);
       rollsClone = _.clone(rolls);
       // pull the biggest value
-      _.pullAt(
-        rolls,
-        rolls.lastIndexOf((element) => Math.max(...rolls))
-      );
+      _.pullAt(rolls, rolls.lastIndexOf(Math.max(...rolls)));
       total = rolls[0] + rolls[1];
       break;
   }

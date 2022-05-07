@@ -56,12 +56,12 @@ app.post("/interactions", async function (req, res) {
       // User's advantage
       const advantage = req.body.data.options[0].value;
       const { rollString, total } = getResult(advantage);
-      const mod = advantage === "none" ? advantage : `with ${advantage}`;
+      const mod = advantage === "none" ? "" : ` with ${advantage}`;
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
           // Fetches a random emoji to send from a helper function
-          content: `<@${userId}> rolls ${mod} and gets - Total: ${total}  Rolls: [${rollString}]`,
+          content: `<@${userId}> rolls${mod} and gets - Total: ${total}  Rolls: [${rollString}]`,
         },
       });
     }
