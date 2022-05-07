@@ -55,7 +55,7 @@ app.post("/interactions", async function (req, res) {
       const userId = req.body.member.user.id;
       // User's advantage
       const advantage = req.body.data.options[0].value;
-      const { rollString, total } = getResult(advantage);
+      const { rollString, total } = getResult(advantage.toLowerCase());
       const mod = advantage === "none" ? "" : ` with ${advantage}`;
       return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
