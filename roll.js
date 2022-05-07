@@ -5,12 +5,12 @@ export function getResult(advantage) {
   let total = 0;
   // roll for no advantage
   switch (advantage) {
-    case 0:
+    case "none":
       rolls = rollDie(2);
       total = rolls[0].roll + rolls[1].roll;
       break;
     // has advantage
-    case 1:
+    case "advantage":
       rolls = rollDie(3);
       // pull the smallest value
       _.pullAt(
@@ -20,7 +20,7 @@ export function getResult(advantage) {
       total = rolls[0] + rolls[1];
       break;
     // disadvantage
-    case 2:
+    case "disadvantage":
       rolls = rollDie(3);
       // pull the biggest value
       _.pullAt(

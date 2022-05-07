@@ -50,8 +50,8 @@ function createCommandChoices() {
 
   for (let choice of choices) {
     commandChoices.push({
-      label: capitalize(choice.label),
-      value: choice.value,
+      label: capitalize(choice),
+      value: choice,
     });
   }
 
@@ -65,7 +65,7 @@ export const ROLL_COMMAND = {
   options: [
     {
       type: 3,
-      name: "modification",
+      name: "mod",
       description: "Dose the outsider smile upon you?",
       required: true,
       choices: createCommandChoices(),
