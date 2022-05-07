@@ -24,6 +24,7 @@ async function HasGuildCommand(appId, guildId, command) {
         InstallGuildCommand(appId, guildId, command);
       } else {
         console.log(`"${command["name"]}" command already installed`);
+        PatchGuildCommand(appId, guildId, command);
       }
     }
   } catch (err) {
@@ -43,19 +44,16 @@ export async function InstallGuildCommand(appId, guildId, command) {
   }
 }
 
-// Get the game choices from game.js
-function createCommandChoices() {
-  const choices = getRollChoices();
-  const commandChoices = [];
-
-  for (let choice of choices) {
-    commandChoices.push({
-      label: capitalize(choice),
-      value: choice,
-    });
+// Patches a command
+export async function PatchGuildCommand(appId, guildId, command) {
+  // API endpoint to get and post guild commands
+  const endpoint = `applications/${appId}/guilds/${guildId}/commands`;
+  // patch command
+  try {
+    await DiscordRequest(endpoint, { method: "PATCH", body: command });
+  } catch (err) {
+    console.error(err);
   }
-
-  return commandChoices;
 }
 
 // Command containing options
@@ -66,9 +64,22 @@ export const ROLL_COMMAND = {
     {
       type: 3,
       name: "mod",
-      description: "Dose the outsider smile upon you",
+      description: "Dose the outsider smile upon you?",
       required: true,
-      choices: createCommandChoices(),
+      choices: [
+        {
+          name: "None",
+          value: "none",
+        },
+        {
+          name: "Advantage",
+          value: "advantage",
+        },
+        {
+          name: "Disadvantage",
+          value: "disadvantage",
+        },
+      ],
     },
   ],
   type: 1,

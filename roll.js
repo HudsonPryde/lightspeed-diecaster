@@ -54,14 +54,3 @@ function rollDie(num) {
 
   return rolls;
 }
-
-// this is just to figure out winner + verb
-const RollChoices = {
-  none: { value: 0, label: "no advantage" },
-  advantage: { value: 1, label: "advantage" },
-  disadvantage: { value: 2, label: "disadvantage" },
-};
-
-export function getRollChoices() {
-  return Object.keys(RollChoices);
-}
