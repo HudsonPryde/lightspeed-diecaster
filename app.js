@@ -1,17 +1,7 @@
 import "dotenv/config";
 import express from "express";
-import {
-  InteractionType,
-  InteractionResponseType,
-  InteractionResponseFlags,
-  MessageComponentTypes,
-  ButtonStyleTypes,
-} from "discord-interactions";
-import {
-  VerifyDiscordRequest,
-  getRandomEmoji,
-  DiscordRequest,
-} from "./utils.js";
+import { InteractionType, InteractionResponseType } from "discord-interactions";
+import { VerifyDiscordRequest, DiscordRequest } from "./utils.js";
 import { getResult } from "./roll.js";
 import { ROLL_COMMAND, HasGuildCommands } from "./commands.js";
 
