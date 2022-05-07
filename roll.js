@@ -2,16 +2,19 @@ import _ from "lodash";
 
 export function getResult(advantage) {
   let rolls = null;
-  let total = 0;
+  const rollsClone = null;
+  const total = 0;
   // roll for no advantage
   switch (advantage) {
     case "none":
       rolls = rollDie(2);
-      total = rolls[0].roll + rolls[1].roll;
+      rollsClone = rolls;
+      total = rolls[0] + rolls[1];
       break;
     // has advantage
     case "advantage":
       rolls = rollDie(3);
+      rollsClone = rolls;
       // pull the smallest value
       _.pullAt(
         rolls,
@@ -22,6 +25,7 @@ export function getResult(advantage) {
     // disadvantage
     case "disadvantage":
       rolls = rollDie(3);
+      rollsClone = rolls;
       // pull the biggest value
       _.pullAt(
         rolls,
@@ -30,8 +34,15 @@ export function getResult(advantage) {
       total = rolls[0] + rolls[1];
       break;
   }
+  // create a formated string to represent the rolls
+  const rollString = rollsClone.map((roll, i) => {
+    if (i > 0) {
+      return `, ${roll}`;
+    }
+    return `${roll}`;
+  });
 
-  return { rolls, total };
+  return { rollString, total };
 }
 
 function rollDie(num) {
