@@ -8,13 +8,13 @@ export function getResult(advantage) {
   switch (advantage) {
     case "none":
       rolls = rollDie(2);
-      rollsClone = rolls;
+      rollsClone = _.clone(rolls);
       total = rolls[0] + rolls[1];
       break;
     // has advantage
     case "advantage":
       rolls = rollDie(3);
-      rollsClone = rolls;
+      rollsClone = _.clone(rolls);
       // pull the smallest value
       _.pullAt(
         rolls,
@@ -25,7 +25,7 @@ export function getResult(advantage) {
     // disadvantage
     case "disadvantage":
       rolls = rollDie(3);
-      rollsClone = rolls;
+      rollsClone = _.clone(rolls);
       // pull the biggest value
       _.pullAt(
         rolls,
