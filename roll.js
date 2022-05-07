@@ -18,7 +18,7 @@ export function getResult(advantage) {
       // pull the smallest value
       _.pullAt(
         rolls,
-        rolls.findIndex((element) => Math.min(...rolls))
+        rolls.lastIndexOf((element) => Math.min(...rolls))
       );
       total = rolls[0] + rolls[1];
       break;
@@ -29,7 +29,7 @@ export function getResult(advantage) {
       // pull the biggest value
       _.pullAt(
         rolls,
-        rolls.findIndex((element) => Math.max(...rolls))
+        rolls.lastIndexOf((element) => Math.max(...rolls))
       );
       total = rolls[0] + rolls[1];
       break;
