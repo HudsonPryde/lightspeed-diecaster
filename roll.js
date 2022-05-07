@@ -12,16 +12,22 @@ export function getResult(advantage) {
     // has advantage
     case 1:
       rolls = rollDie(3);
-      // sort the rolls into ascending order
-      rolls = _.orderBy(rolls, ["roll"], ["asc"]);
-      total = rolls[0].roll + rolls[1].roll;
+      // pull the smallest value
+      _.pullAt(
+        rolls,
+        rolls.findIndex((element) => Math.min(...rolls))
+      );
+      total = rolls[0] + rolls[1];
       break;
     // disadvantage
     case 2:
       rolls = rollDie(3);
-      // sort the rolls into ascending order
-      rolls = _.orderBy(rolls, ["roll"], ["desc"]);
-      total = rolls[0].roll + rolls[1].roll;
+      // pull the biggest value
+      _.pullAt(
+        rolls,
+        rolls.findIndex((element) => Math.max(...rolls))
+      );
+      total = rolls[0] + rolls[1];
       break;
   }
 
@@ -30,7 +36,7 @@ export function getResult(advantage) {
 
 function rollDie(num) {
   let rolls = Array.from({ length: num }, (v, i) => {
-    return { roll: _.random(1, 6) };
+    return _.random(1, 6);
   });
 
   return rolls;
