@@ -65,7 +65,7 @@ export const ROLL_COMMAND = {
   options: [
     {
       type: 3,
-      name: "advantage?",
+      name: "advantage",
       description: "Dose the outsider smile upon you?",
       required: true,
       choices: createCommandChoices(),
