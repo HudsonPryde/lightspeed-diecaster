@@ -3,7 +3,7 @@ import _ from "lodash";
 export function getResult(advantage) {
   let rolls = null;
   let rollsClone = null;
-  const total = 0;
+  let total = 0;
   // roll for no advantage
   switch (advantage) {
     case "none":
