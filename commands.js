@@ -66,7 +66,7 @@ export const ROLL_COMMAND = {
     {
       type: 3,
       name: "mod",
-      description: "Dose the outsider smile upon you?",
+      description: "Dose the outsider smile upon you",
       required: true,
       choices: createCommandChoices(),
     },
