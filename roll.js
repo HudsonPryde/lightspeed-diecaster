@@ -35,11 +35,13 @@ export function getResult(advantage) {
       break;
   }
   // create a formated string to represent the rolls
-  const rollString = rollsClone.map((roll, i) => {
+  let rollString = "";
+  rollsClone.forEach((roll, i) => {
     if (i > 0) {
-      return `, ${roll}`;
+      rollString += `, ${roll}`;
+    } else {
+      rollString += `${roll}`;
     }
-    return `${roll}`;
   });
 
   return { rollString, total };
